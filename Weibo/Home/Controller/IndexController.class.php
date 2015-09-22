@@ -3,7 +3,8 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){
-        $this->show('kaixin');
+        //$this->show('kaixin');
+        $this->display();
     }
     
     public function say($input='hello world'){

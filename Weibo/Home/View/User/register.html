@@ -3,15 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>register</title>
+<link href="__PUBLIC__/Css/User.css" rel="stylesheet" type="text/css" /> 
 <script src="__STATIC__/jquery-2.1.4.min.js"></script>
 </head>
 <body>
+<include file="Public:Userheader" />
 <form method="post" id="reg_form" action="{:U('Home/User/register')}">
 用户名<input type="text" id="username" name="username"/><br/>
 密码<input type="password" id="password" name="password"/><br/>
 确认密码<input type="password" id="password2" name="password2"/><br/>
 <input type="button" name="reg" id="reg" value="提交" />
 </form>
+<include file="Public:Userfooter" />
 
 <script type="text/javascript">
 $(function(){

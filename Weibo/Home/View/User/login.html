@@ -3,14 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>user_login</title>
+<link href="__PUBLIC__/Css/User.css" rel="stylesheet" type="text/css" /> 
 <script src="__STATIC__/jquery-2.1.4.min.js"></script>
 </head>
 <body>
+<include file="Public:Userheader" />
 <form method="post" id="log_form" action="{:U('Home/User/login')}">
 用户名<input type="text" id="username" name="username"/>
 密码<input type="password" id="password" name="password"/>
 <input type="button" id="log" value="登录" />
 </form>
+<include file="Public:Userfooter" />
+
 <script type="text/javascript">
 $(function(){
 	$('#log').click(function(){

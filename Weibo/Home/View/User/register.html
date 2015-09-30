@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>register</title>
+<script src="__STATIC__/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<form method="post" id="reg_form" action="{:U('Home/User/register')}">
+用户名<input type="text" id="username" name="username"/><br/>
+密码<input type="password" id="password" name="password"/><br/>
+确认密码<input type="password" id="password2" name="password2"/><br/>
+<input type="button" name="reg" id="reg" value="提交" />
+</form>
+
+<script type="text/javascript">
+$(function(){
+	$('#reg').click(function(){
+		//console.log($('#username').val());
+		$username = $('#username').val();
+		$password = $('#password').val();
+		$password2 = $('#password2').val();
+		$post_url = $('#reg_form').attr('action');
+		$.post($post_url,{
+			username:$username,password:$password,password2:$password2
+		},function(data){
+			$('.popmessage').html(data.info);
+			$('#popbg').show();
+		},'json');
+		//$.post();
+	});
+});
+</script>
+<!-- 提示框 -->
+      <div class="popbg" id="popbg" style="position: fixed; z-index: 9999; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0, 0, 0, 0.3);display:none;">
+        <div class="popcontain" style="position: fixed; z-index: 10000; min-width: 140px; max-width: 280px; margin: auto; left: 0; top: 0; right: 0; bottom: 0; min-height: 100px; max-height: 150px; background: #fff; border-radius: 2px; overflow: hidden; text-align: center;">
+        <div class="popmessage" style="margin-top: 4%; font-size: 20px; padding: 10px; "></div>
+        <a href="javascript:void(0)" class="popbtn" style="position: absolute; bottom: 0; left: 0; width: 100%; height:40px;line-height:40px;text-align:center; background:#ebecee; color:#666; " onclick="javascript: document.getElementById('popbg').style.display = 'none';">确定</a>
+        </div>
+      </div>
+</body>
+</html>

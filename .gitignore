@@ -3,3 +3,4 @@
 .settings/
 ThinkPHP/
 */Runtime/
+Weibo/Common/Conf/debug.php

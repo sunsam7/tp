@@ -3,16 +3,23 @@ namespace Home\Model;
 
 use Think\Model;
 class UserModel extends Model{
+    protected $patchValidate = true;
+    
+    protected $_validate = array(
+        array('username','/^[\w\d_-]{4,20}$/','用户名4到20位，英文和数字'),
+        array('password','/^([\w\d]{8,16})$/','密码8到16位，英文和数字'),
+    );
+    
     public function reg($data){
-        if (!preg_match("/^[a-zA-Z_-]{4,20}$/", $data['username'])){
+        /* if (!preg_match("/^[a-zA-Z_-]{4,20}$/", $data['username'])){
             $info = array('status'=>0,'info'=>'用户名不符合规范');
             return $info;
         }
         if (empty($data['password']) || $data['password'] != $data['password2']){
             $info = array('status'=>0,'info'=>'密码空或两次不一致');
             return $info;
-        }
-//         $User = M('User');
+        } */
+        //$User = M('User');
         $map['username'] = $data['username'];
         if($this->where($map)->find()){
             $info = array('status'=>0,'info'=>'用户名已存在');
@@ -21,9 +28,15 @@ class UserModel extends Model{
 
         //dump($data);
         $data_int['username'] = $data['username'];
-        $data_int['password'] = md5($data['password']);
+        $data_int['password'] = $data['password'];
         $data_int['ip'] = $_SERVER['REMOTE_ADDR'];
         $data_int['lasttime'] = time();
+        
+        if (!$this->create($data_int,1)){
+            $info = array('status'=>0,'info'=>$this->getError());
+            return $info;
+        }
+        $data_int['password'] = md5($data_int['password']);
         
         //dump($data_int);
         if($this->add($data_int)){

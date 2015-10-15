@@ -15,6 +15,7 @@ class UserController extends Controller {
             $data = I('post.');
             $user = D('User');
             $this->ajaxReturn($user->login($data['username'],$data['password']));
+            //$this->ajaxReturn($user->login2($data));
         }
     }
     

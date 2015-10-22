@@ -1,0 +1,14 @@
+.head{
+	height:60px;
+	background:#000;
+}
+.foot{
+	height:40px;
+	background:#ddd;
+}
+.left{
+	background:#ccc;
+}
+.right{
+	background:#fff;
+}

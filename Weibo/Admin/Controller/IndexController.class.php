@@ -11,9 +11,10 @@ class IndexController extends Controller{
     
     public function userlist(){
         //$this->display();
-        $user_list = D('User')->getUserlist();
+        $listdata = D('User')->getUserlist();
         //dump($user_list);
-        $this->assign('user_list',$user_list);
+        $this->assign('user_list',$listdata['list']);
+        $this->assign('page',$listdata['page']);
         $this->display();
     }
 }
